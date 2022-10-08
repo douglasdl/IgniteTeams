@@ -14,19 +14,27 @@ import { ButtonIcon } from '@components/ButtonIcon';
 import { Filter } from '@components/Filter';
 import { PlayerCard } from '@components/PlayerCard';
 import { ListEmpty } from '@components/ListEmpty';
+import { useRoute } from '@react-navigation/native';
+
+type RouteParams = {
+    group: string;
+}
 
 export function Players() {
 
     const [teams, setTeams] = useState(['Time A', 'Time B']);
     const [selectedTeam, setSelectedTeam] = useState(teams[0]);
     const [players, setPlayers] = useState(['Douglas', 'Karina', 'Carol', 'Yuna']);
+
+    const route = useRoute();
+    const { group } = route.params as RouteParams;
  
     return (
         <Container>
             <Header showBackButton />
 
             <Highlight 
-                title='Nome da Turma'
+                title={group}
                 subtitle='Adicione a galera e separe os times'
             />
 
