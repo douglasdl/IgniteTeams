@@ -33,6 +33,8 @@ npm install --save-dev @types/styled-components-react-native
 - [Expo Google Fonts](https://docs.expo.dev/guides/using-custom-fonts/)
 - [Phosphor Icons](https://phosphoricons.com/)
 - [Expo SVG](https://docs.expo.dev/versions/latest/sdk/svg/)
+- [React Native Vector Icons](https://oblador.github.io/react-native-vector-icons/)
+- [Expo Vector Icons](https://icons.expo.fyi)
 
 - [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components)
 - [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
