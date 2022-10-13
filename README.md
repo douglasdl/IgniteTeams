@@ -15,6 +15,7 @@ npx expo install expo-font @expo-google-fonts/roboto
 npx expo install react-native-svg
 npx expo install react-native-screens 
 npx expo install react-native-safe-area-context
+npx expo install @react-native-async-storage/async-storage
 ```
 
 Install the dependencies
@@ -40,6 +41,7 @@ npm install --save-dev @types/styled-components-react-native
 - [React Native Vector Icons](https://oblador.github.io/react-native-vector-icons/)
 - [Expo Vector Icons](https://icons.expo.fyi)
 - [React Navigation](https://reactnavigation.org/)
+- [Async Storage](https://docs.expo.dev/versions/latest/sdk/async-storage/)
 
 - [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components)
 - [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
