@@ -3,10 +3,24 @@ Ignite Teams
 
 [Layout](https://www.figma.com/file/fgZ01VcIp3I88PCXx9IC6v/Ignite-Teams?node-id=37%3A6)
 
-
-Create the project - Managed workflow - blank (TypeScript)
+Install the Watchman:
 ```sh
-expo init igniteteams --npm
+brew install watchman
+```
+
+Check if Watchmand is Installed:
+```sh
+watchman --version
+```
+
+ Increase the Limit for File Watchers:
+ ```sh
+ulimit -n
+ ```
+
+Create the project usinf [Expo](https://docs.expo.dev):
+```sh
+npx create-expo-app@latest
 ```
 
 Install Expo dependencies
@@ -46,3 +60,14 @@ npm install --save-dev @types/styled-components-react-native
 - [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=styled-components.vscode-styled-components)
 - [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
 - [TypeScript Error Translator](https://marketplace.visualstudio.com/items?itemName=mattpocock.ts-error-translator)
+
+Update the Expo SDK 52
+```sh
+npx expo install expo@latest
+npx expo install --fix
+```
+
+Start the project:
+```sh
+npx expo start
+```
