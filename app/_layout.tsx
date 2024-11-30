@@ -9,6 +9,7 @@ import '../global.css';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { ActivityIndicator, View } from 'react-native';
+import { Loading } from '@/components/Loading';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -24,11 +25,7 @@ export default function RootLayout() {
   }, [fontsloaded]);
 
   if (!fontsloaded) {
-    return (
-      <View className='items-center justify-center flex-1'>
-        <ActivityIndicator />;
-      </View>
-    )
+    return <Loading />
   }
 
   return (
