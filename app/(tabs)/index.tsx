@@ -1,3 +1,4 @@
+import { Button } from '@/components/Button';
 import { GroupCard } from '@/components/GroupCard';
 import { Header } from '@/components/Header';
 import { Highlight } from '@/components/Highlight';
@@ -13,8 +14,12 @@ export default function HomeScreen() {
 		
 	}
 
+  function handleNewGroup() {
+		
+	}
+
   return (
-    <View className="flex-1 bg-zinc-800 p-6">
+    <View className="flex-1 bg-zinc-800 p-6 mb-24">
       <Header />
       <Highlight 
 				title='Turmas'
@@ -35,6 +40,11 @@ export default function HomeScreen() {
           <ListEmpty message='Nenhuma turma cadastrada!' />
         )}
       />
+
+      <Button 
+				title="Criar Nova Turma" 
+				onPress={handleNewGroup}
+			/>
 
     </View>
   );
