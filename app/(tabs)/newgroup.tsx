@@ -6,6 +6,7 @@ import { useRouter } from 'expo-router';
 import { UsersThree } from 'phosphor-react-native';
 import { useState } from 'react';
 import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from 'tailwindcss/colors';
 
 export default function TabTwoScreen() {
@@ -22,7 +23,7 @@ export default function TabTwoScreen() {
   }
   
   return (
-    <View className="flex-1 bg-zinc-800 p-6">
+    <SafeAreaView className="flex-1 bg-zinc-800 p-6 mb-12">
       <Header showBackButton />
       <View className='items-center justify-center flex-1 w-full gap-4'>
         <UsersThree 
@@ -45,6 +46,6 @@ export default function TabTwoScreen() {
           onPress={() => handleCreate()}
           />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }

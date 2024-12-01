@@ -7,6 +7,7 @@ import { useCallback, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +39,7 @@ export default function HomeScreen() {
 	}, [groups]))
 
   return (
-    <View className="flex-1 bg-zinc-800 p-6 mb-24">
+    <SafeAreaView className="flex-1 bg-zinc-800 p-6 mb-12">
       <Header />
       <Highlight 
 				title='Turmas'
@@ -65,6 +66,6 @@ export default function HomeScreen() {
 				onPress={handleNewGroup}
 			/>
 
-    </View>
+    </SafeAreaView>
   );
 }

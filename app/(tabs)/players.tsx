@@ -10,6 +10,7 @@ import { PlayerCard } from '@/components/PlayerCard';
 import { PlayerStorageDTO } from '@/storage/player/PlayerStorageDTO';
 import { useRef, useState } from 'react';
 import { FlatList, Text, TextInput, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function TabThreeScreen() {
   const [isLoading, setIsLoading] = useState(!true);
@@ -34,7 +35,7 @@ export default function TabThreeScreen() {
   }
 
   return (
-    <View className="flex-1 bg-zinc-800 p-6 mb-24">
+    <SafeAreaView className="flex-1 bg-zinc-800 p-6 mb-12">
       <Header showBackButton />
       <Highlight
         title={group}
@@ -109,6 +110,6 @@ export default function TabThreeScreen() {
         type='SECONDARY'
         onPress={() => handleRemoveGroup()}
       />
-    </View>
+    </SafeAreaView>
   );
 }
