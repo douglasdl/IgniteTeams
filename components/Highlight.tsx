@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 
 interface HighlightProps {
-  title: string
+  title: string | string[]
   subtitle: string
 }
 

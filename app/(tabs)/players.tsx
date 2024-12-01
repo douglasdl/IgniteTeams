@@ -8,6 +8,7 @@ import { ListEmpty } from '@/components/ListEmpty';
 import { Loading } from '@/components/Loading';
 import { PlayerCard } from '@/components/PlayerCard';
 import { PlayerStorageDTO } from '@/storage/player/PlayerStorageDTO';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useRef, useState } from 'react';
 import { FlatList, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -18,8 +19,9 @@ export default function TabThreeScreen() {
   const [selectedTeam, setSelectedTeam] = useState(teams[0]);
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
   const [newPlayerName, setNewPlayerName] = useState('');
-  const group = "Nome da Turma";
-
+  
+  const { group } = useLocalSearchParams();
+  
   const newPlayerNameInputRef = useRef<TextInput>(null);
 
   async function handleAddPlayer() {

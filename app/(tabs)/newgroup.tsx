@@ -19,7 +19,6 @@ export default function TabTwoScreen() {
       pathname: '/players',
       params: { group }
     });
-
   }
   
   return (
