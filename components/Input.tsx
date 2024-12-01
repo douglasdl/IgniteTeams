@@ -12,7 +12,7 @@ export function Input({ inputRef, ...rest }: InputProps) {
     <TextInput 
       ref={inputRef}
       placeholderTextColor={colors.gray[300]}
-      className='bg-zinc-700 text-white text-xl p-4 w-full rounded-lg min-h-[56px] max-h-[56px] flex-1'
+      className='bg-zinc-900 text-white text-xl p-4 w-full rounded-lg min-h-[56px] max-h-[56px] flex-1'
       { ...rest }
     />
   )
