@@ -3,9 +3,9 @@ import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 export type ButtonTypeStyleProps = 'PRIMARY' | 'SECONDARY';
 
-type ButtonProps = TouchableOpacityProps & {
-  title: string;
-  type?: ButtonTypeStyleProps;
+interface ButtonProps extends TouchableOpacityProps {
+  title: string
+  type?: ButtonTypeStyleProps
 }
 
 export function Button({ title, type = 'PRIMARY', ...rest }: ButtonProps) {
@@ -13,7 +13,7 @@ export function Button({ title, type = 'PRIMARY', ...rest }: ButtonProps) {
 
   return (
     <TouchableOpacity
-      className={`flex-1 min-h-[56px] max-h-[56px] rounded-lg items-center justify-center ${colors}`}
+      className={`flex-1 w-full min-h-[56px] max-h-[56px] rounded-lg items-center justify-center ${colors}`}
       {...rest}
     >
       <Text className='text-lg text-white font-bold'>{title}</Text>
