@@ -1,9 +1,13 @@
 import { GroupCard } from '@/components/GroupCard';
 import { Header } from '@/components/Header';
 import { Highlight } from '@/components/Highlight';
-import { View } from 'react-native';
+import { ListEmpty } from '@/components/ListEmpty';
+import { useState } from 'react';
+import { FlatList, View } from 'react-native';
 
 export default function HomeScreen() {
+
+  const [groups, setGroups] = useState<string[]>([])
 
   function handleOpenGroup(group: string) {
 		
@@ -17,10 +21,21 @@ export default function HomeScreen() {
 				subtitle='Jogue com a sua turma'
 			/>
 
-      <GroupCard 
-			  title={"Name"}
-			  onPress={() => {handleOpenGroup("")}}
-			/>
+      <FlatList
+        data={groups}
+        keyExtractor={item => item}
+        renderItem={({ item }) => (
+          <GroupCard 
+            title={item}
+            onPress={() => {handleOpenGroup(item)}}
+          />
+        )}
+        contentContainerStyle={groups.length === 0 && { flex: 1 }}
+        ListEmptyComponent={() => (
+          <ListEmpty message='Nenhuma turma cadastrada!' />
+        )}
+      />
+
     </View>
   );
 }
