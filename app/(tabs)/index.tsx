@@ -3,20 +3,39 @@ import { GroupCard } from '@/components/GroupCard';
 import { Header } from '@/components/Header';
 import { Highlight } from '@/components/Highlight';
 import { ListEmpty } from '@/components/ListEmpty';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FlatList, View } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function HomeScreen() {
-
-  const [groups, setGroups] = useState<string[]>([])
-
-  function handleOpenGroup(group: string) {
-		
-	}
-
+  const [isLoading, setIsLoading] = useState(true);
+  const [groups, setGroups] = useState<string[]>([]);
+  
+  const router = useRouter();
+ 
   function handleNewGroup() {
-		
+    router.navigate('/newgroup');
 	}
+  
+  function handleOpenGroup(group: string) {
+    router.navigate({
+      pathname: '/players',
+      params: { group }
+    });
+  }
+
+  async function fetchGroups() {
+
+  }
+
+  useFocusEffect(useCallback(() => {
+		setIsLoading(true);
+		
+		fetchGroups();
+		
+		setIsLoading(false);
+	}, [groups]))
 
   return (
     <View className="flex-1 bg-zinc-800 p-6 mb-24">

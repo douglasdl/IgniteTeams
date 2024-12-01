@@ -2,16 +2,22 @@ import { Button } from '@/components/Button';
 import { Header } from '@/components/Header';
 import { Highlight } from '@/components/Highlight';
 import { Input } from '@/components/Input';
+import { useRouter } from 'expo-router';
 import { UsersThree } from 'phosphor-react-native';
 import { useState } from 'react';
 import { View } from 'react-native';
 import colors from 'tailwindcss/colors';
 
 export default function TabTwoScreen() {
+  const router = useRouter();
 
   const [group, setGroup] = useState('');
 
   async function handleCreate() {
+    router.navigate({
+      pathname: '/players',
+      params: { group }
+    });
 
   }
   

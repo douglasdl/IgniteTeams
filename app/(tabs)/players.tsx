@@ -35,7 +35,7 @@ export default function TabThreeScreen() {
 
   return (
     <View className="flex-1 bg-zinc-800 p-6 mb-24">
-      <Header />
+      <Header showBackButton />
       <Highlight
         title={group}
         subtitle='Adicione a galera e separe os times'
