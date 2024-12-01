@@ -49,7 +49,7 @@ npx tailwindcss init
 ```
 Install the dependencies
 ```sh
-npm install --save phosphor-react-native
+npm i phosphor-react-native
 npm install @react-navigation/native
 npm install @react-navigation/native-stack
 ```

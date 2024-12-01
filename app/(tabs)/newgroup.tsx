@@ -1,24 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Header } from '@/components/Header';
+import { Highlight } from '@/components/Highlight';
+import { View } from 'react-native';
 
 export default function TabTwoScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.titleContainer}>New Group</Text>
+    <View className="flex-1 bg-zinc-800 p-6">
+      <Header showBackButton />
+      <Highlight
+					title='Nova Turma'
+					subtitle='Crie uma turma para adicionar pessoas'
+				/>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    
-    gap: 8,
-    color: '#fff'
-  },
-  container: {
-    gap: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%'
-  }
-});

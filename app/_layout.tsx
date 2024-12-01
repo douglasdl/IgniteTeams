@@ -8,7 +8,6 @@ import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/
 import '../global.css';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { ActivityIndicator, View } from 'react-native';
 import { Loading } from '@/components/Loading';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -34,7 +33,7 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </ThemeProvider>
   );
 }
