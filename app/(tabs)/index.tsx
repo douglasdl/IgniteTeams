@@ -4,10 +4,12 @@ import { Header } from '@/components/Header';
 import { Highlight } from '@/components/Highlight';
 import { ListEmpty } from '@/components/ListEmpty';
 import { useCallback, useState } from 'react';
-import { FlatList, View } from 'react-native';
-import { Stack, useRouter } from 'expo-router';
+import { Alert, FlatList } from 'react-native';
+import { useRouter } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { groupsGetAll } from '@/storage/group/groupsGetAll';
+import { Loading } from '@/components/Loading';
 
 export default function HomeScreen() {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,14 +29,18 @@ export default function HomeScreen() {
   }
 
   async function fetchGroups() {
-
+    try {
+			const data = await groupsGetAll();
+			setGroups(data);
+		} catch (error) {
+			console.error(error);
+			Alert.alert('Turmas', 'Não foi possível carregar as Turmas!');
+		}
   }
 
   useFocusEffect(useCallback(() => {
 		setIsLoading(true);
-		
 		fetchGroups();
-		
 		setIsLoading(false);
 	}, [groups]))
 
@@ -45,27 +51,28 @@ export default function HomeScreen() {
 				title='Turmas'
 				subtitle='Jogue com a sua turma'
 			/>
-
-      <FlatList
-        data={groups}
-        keyExtractor={item => item}
-        renderItem={({ item }) => (
-          <GroupCard 
-            title={item}
-            onPress={() => {handleOpenGroup(item)}}
+      { 
+        isLoading ? <Loading /> : (
+          <FlatList
+            data={groups}
+            keyExtractor={item => item}
+            renderItem={({ item }) => (
+              <GroupCard 
+                title={item}
+                onPress={() => {handleOpenGroup(item)}}
+              />
+            )}
+            contentContainerStyle={groups.length === 0 && { flex: 1 }}
+            ListEmptyComponent={() => (
+              <ListEmpty message='Nenhuma turma cadastrada!' />
+            )}
           />
-        )}
-        contentContainerStyle={groups.length === 0 && { flex: 1 }}
-        ListEmptyComponent={() => (
-          <ListEmpty message='Nenhuma turma cadastrada!' />
-        )}
-      />
-
+        )
+      }
       <Button 
 				title="Criar Nova Turma" 
 				onPress={handleNewGroup}
 			/>
-
     </SafeAreaView>
   );
 }
