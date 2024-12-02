@@ -7,10 +7,16 @@ import { Input } from '@/components/Input';
 import { ListEmpty } from '@/components/ListEmpty';
 import { Loading } from '@/components/Loading';
 import { PlayerCard } from '@/components/PlayerCard';
+import { groupRemoveByName } from '@/storage/group/groupRemoveByName';
+import { playerRemoveByGroup } from '@/storage/player/playerRemoveByGroup';
+import { playersAddByGroup } from '@/storage/player/playersAddByGroup';
+import { playersGetByGroup } from '@/storage/player/playersGetByGroup';
+import { playersGetByGroupAndTeam } from '@/storage/player/playersGetByGroupAndTeam';
 import { PlayerStorageDTO } from '@/storage/player/PlayerStorageDTO';
+import { AppError } from '@/utils/AppError';
 import { router, useLocalSearchParams } from 'expo-router';
-import { useRef, useState } from 'react';
-import { FlatList, Text, TextInput, View } from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { Alert, FlatList, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function TabThreeScreen() {
@@ -25,16 +31,79 @@ export default function TabThreeScreen() {
   const newPlayerNameInputRef = useRef<TextInput>(null);
 
   async function handleAddPlayer() {
+    if(newPlayerName.trim().length === 0) {
+      return Alert.alert('Nova Pessoa', 'Informe o nome da pessoa!')
+    }
 
+    const newPlayer = {
+      name: newPlayerName,
+      team: selectedTeam,
+    }
+
+    try {
+      await playersAddByGroup(newPlayer, group);
+
+      newPlayerNameInputRef.current?.blur();
+
+      setNewPlayerName('');
+      const players = await playersGetByGroup(group);
+    } catch (error) {
+      if(error instanceof AppError) {
+        Alert.alert('Novo participante', error.message);
+      } else {
+        Alert.alert('Novo participante', 'Não foi possível adicionar!');
+      }
+    }
   }
 
-  async function handleRemoveGroup() {
-
+  async function fetchPlayersByTeam() {
+    try {
+      const playersByTeam = await playersGetByGroupAndTeam(group, selectedTeam);
+      setPlayers(playersByTeam);
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Participantes', `Não foi possível carregar as pessoas do time ${selectedTeam}!`);
+    }
   }
 
   async function handleRemovePlayer(playerName: string) {
-
+    try {
+      await playerRemoveByGroup(playerName, group);
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Remover Participante', 'Não foi possível remover essa pessoa!')
+    }
   }
+
+  async function groupRemove() {
+    try {
+        groupRemoveByName(group);
+        router.navigate('/');
+    } catch (error) {
+        console.log(error);
+        Alert.alert('Remover Turma', 'Não foi possível remover essa turma!')
+    }
+  }
+
+  
+  async function handleRemoveGroup() {
+    Alert.alert(
+      'Remover Turma', 
+      'Deseja remover a Turma?',
+      [
+        { text: 'Não', style: 'cancel' },
+        { text: 'Sim', onPress: () => groupRemove() }
+      ]
+    )
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    fetchPlayersByTeam();
+
+    setIsLoading(false);
+}, [selectedTeam, players])
 
   return (
     <SafeAreaView className="flex-1 bg-zinc-800 p-6 mb-12">
